@@ -54,16 +54,24 @@
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-core</artifactId>
+      <version>${camel.version}</version>
     </dependency>
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-spring</artifactId>
+      <version>${camel.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.apache.camel</groupId>
       <artifactId>camel-cassandraql</artifactId>
       <version>${camel.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.datastax.cassandra</groupId>
+      <artifactId>cassandra-driver-core</artifactId>
+      <version>3.1.0</version>
     </dependency>
 
     <!-- used for generating random message -->
@@ -135,9 +143,9 @@
         <configuration>
           <generator>
             <config>
-               <java-exec>
-                 <mainClass>org.apache.camel.spring.Main</mainClass>
-               </java-exec>
+              <java-exec>
+                <mainClass>org.apache.camel.spring.Main</mainClass>
+              </java-exec>
             </config>
           </generator>
         </configuration>
