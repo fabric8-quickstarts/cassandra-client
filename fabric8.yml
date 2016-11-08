@@ -1,0 +1,13 @@
+---
+pipeline: "workflows/maven/CanaryReleaseAndStage/Jenkinsfile"
+buildName: "cassandra-client"
+codeReview: false
+links:
+  Git: "https://github.com/jstrachan/cassandra-client.git"
+  Job: "http://172.30.44.139:80/job/cassandra-client"
+  Staging: "http://172.30.231.225:80/kubernetes/pods?namespace=default-staging"
+  Testing: "http://172.30.231.225:80/kubernetes/pods?namespace=default-testing"
+environments:
+  Testing: "default-testing"
+  Staging: "default-staging"
+useLocalFlow: true
