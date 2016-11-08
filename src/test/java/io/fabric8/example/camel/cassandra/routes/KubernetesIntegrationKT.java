@@ -1,5 +1,5 @@
 /*
- * Copyright 2005-2015 Red Hat, Inc.
+ * Copyright 2005-2016 Red Hat, Inc.
  *
  * Red Hat licenses this file to you under the Apache License, version
  * 2.0 (the "License"); you may not use this file except in compliance
@@ -13,13 +13,9 @@
  * implied.  See the License for the specific language governing
  * permissions and limitations under the License.
  */
-
 package io.fabric8.example.camel.cassandra.routes;
 
-import io.fabric8.arquillian.kubernetes.Session;
 import io.fabric8.kubernetes.client.KubernetesClient;
-import io.fabric8.kubernetes.api.model.Pod;
-import org.assertj.core.api.Condition;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.junit.Test;
@@ -33,19 +29,8 @@ public class KubernetesIntegrationKT {
     @ArquillianResource
     KubernetesClient client;
 
-    @ArquillianResource
-    Session session;
-
     @Test
     public void testAppProvisionsRunningPods() throws Exception {
-        assertThat(client).pods()
-                .runningStatus()
-                .filterNamespace(session.getNamespace())
-                .haveAtLeast(1, new Condition<Pod>() {
-                    @Override
-                    public boolean matches(Pod podSchema) {
-                        return true;
-                    }
-                });
+        assertThat(client).deployments().pods().isPodReadyForPeriod();
     }
 }
